@@ -3,31 +3,36 @@ export function useUserData() {
   const [state, dispatch] = useReducer(
     (state, action) => {
       switch (action.type) {
-        case "SET_USERS_DATA":
+        case "SET_ACTIVE_TABS":
           return {
             ...state,
-            loading: false,
-            usersData: action.payload,
+            activetab: action.payload,
           };
         default:
           return state;
       }
     },
     {
-      usersData: null,
-      loading: false,
+      activetab: "datadiri",
     }
   );
 
   const userdata = React.useMemo(
     () => ({
-      addUserData: (payload) => {
-        dispatch(
-          createAction("SET_USERS_DATA", {
-            name: "Rian Khanafi",
-            alamat: "wsb",
-          })
-        );
+      setActiveTab: (payload) => {
+        const tabsSection = ["datadiri", "education", "experiance", "skills"];
+        const index = tabsSection.indexOf(payload);
+        const selected = tabsSection[index + 1];
+        dispatch(createAction("SET_ACTIVE_TABS", selected));
+      },
+      setPrevTab: (payload) => {
+        const tabsSection = ["datadiri", "education", "experiance", "skills"];
+        const index = tabsSection.indexOf(payload);
+        const selected = tabsSection[index - 1];
+        dispatch(createAction("SET_ACTIVE_TABS", selected));
+      },
+      setBulletData: (payload) => {
+        dispatch(createAction("SET_ACTIVE_TABS", payload));
       },
     }),
     []
@@ -39,8 +44,6 @@ export function useUserData() {
       payload,
     };
   }
-
-  console.log("state =>", state);
 
   return { userdata, state };
 }

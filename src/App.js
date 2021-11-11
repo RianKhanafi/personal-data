@@ -6,13 +6,18 @@ import NewData from "pages/Add/newData";
 import { UserDataContext } from "pages/Add/context/userdata";
 import { useUserData } from "pages/Add/context/hook";
 
+import { createBrowserHistory } from "history";
 function App() {
   const { state, userdata } = useUserData();
-  // console.log("state =>", state);
+  const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
   return (
     <UserDataContext.Provider value={{ state, userdata }}>
-      <Router>
+      <Router history={history}>
         <Switch>
+          <Route
+            path="/detail-data/:id"
+            render={(props) => <NewData {...props} />}
+          />
           <Route path="/new-data" render={(props) => <NewData {...props} />} />
           <Route path="/" extract render={(props) => <Home {...props} />} />
         </Switch>
