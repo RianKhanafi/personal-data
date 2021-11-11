@@ -1,12 +1,11 @@
-import logo from "./logo.svg";
-import "./assets/css/style.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "pages/home";
-import NewData from "pages/Add/newData";
-import { UserDataContext } from "pages/Add/context/userdata";
-import { useUserData } from "pages/Add/context/hook";
-
 import { createBrowserHistory } from "history";
+import { useUserData } from "pages/Add/context/hook";
+import { UserDataContext } from "pages/Add/context/userdata";
+import NewData from "pages/Add/newData";
+import Home from "pages/home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./assets/css/style.css";
+
 function App() {
   const { state, userdata } = useUserData();
   const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });

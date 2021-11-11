@@ -1,9 +1,6 @@
-import Input from "components/Input";
-import React, { useContext } from "react";
-
-import { UserDataContext } from "./context/userdata";
-import { useUserData } from "./context/hook";
 import { ReactComponent as IconAdd } from "assets/icons/add.svg";
+import Input from "components/Input";
+import React from "react";
 
 export default function Skills({
   props: {
@@ -13,7 +10,6 @@ export default function Skills({
     onDeleteItems = () => {},
   },
 }) {
-  const { state, userdata } = useContext(UserDataContext);
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
       <div className="bg-gray-100 mr-3 my-4  p-4 md:p-9 lg:p-9 xl:p-9 h-full">
@@ -35,13 +31,6 @@ export default function Skills({
               />
             </div>
             <div className="w-5/12 pr-4">
-              {/* <Input
-                label="Tingkatan"
-                name="tingkatan"
-                onChange={onChange(index)}
-                value={item["tingkatan"]}
-              /> */}
-
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 for="username"

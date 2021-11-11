@@ -1,7 +1,6 @@
-import Input from "components/Input";
-import React, { useContext } from "react";
-import { UserDataContext } from "./context/userdata";
 import { ReactComponent as IconAdd } from "assets/icons/add.svg";
+import Input from "components/Input";
+import React from "react";
 
 export default function Education({
   props: {
@@ -11,7 +10,6 @@ export default function Education({
     onDeleteItems = () => {},
   },
 }) {
-  const { state, userdata } = useContext(UserDataContext);
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
       {data.map((item, index) => (

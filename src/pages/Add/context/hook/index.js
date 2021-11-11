@@ -21,14 +21,14 @@ export function useUserData() {
     () => ({
       setActiveTab: (payload) => {
         const tabsSection = ["datadiri", "education", "experiance", "skills"];
-        const index = tabsSection.indexOf(payload);
-        const selected = tabsSection[index + 1];
+        const activeIndex = tabsSection.indexOf(payload);
+        const selected = tabsSection[activeIndex + 1];
         dispatch(createAction("SET_ACTIVE_TABS", selected));
       },
       setPrevTab: (payload) => {
         const tabsSection = ["datadiri", "education", "experiance", "skills"];
-        const index = tabsSection.indexOf(payload);
-        const selected = tabsSection[index - 1];
+        const activeIndex = tabsSection.indexOf(payload);
+        const selected = tabsSection[activeIndex - 1];
         dispatch(createAction("SET_ACTIVE_TABS", selected));
       },
       setBulletData: (payload) => {

@@ -1,15 +1,12 @@
-import Input from "components/Input";
 import Step from "components/step";
 import Header from "parts/Header";
 import React, { useContext, useEffect, useState } from "react";
-
+import { useHistory, useParams } from "react-router-dom";
+import { UserDataContext } from "./context/userdata";
 import Datadiri from "./datadiri";
 import Education from "./education";
 import Experiance from "./experiance";
 import Skills from "./skills";
-import { UserDataContext } from "./context/userdata";
-import { useUserData } from "./context/hook";
-import { useParams, useHistory } from "react-router-dom";
 
 export default function NewData() {
   const { id } = useParams();

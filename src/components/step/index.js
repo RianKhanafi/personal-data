@@ -1,13 +1,6 @@
-import Header from "parts/Header";
 import React from "react";
 
 export default function Step({ active, onChangePoint }) {
-  const color = {
-    waiting: { style: "bg-gray-200" },
-    ongoing: { style: "border-4 border-green-500 bg-white" },
-    done: { style: "bg-green-500" },
-  };
-
   const tabsSection = ["datadiri", "education", "experiance", "skills"];
 
   const indicator = (type) => {
@@ -111,7 +104,6 @@ export default function Step({ active, onChangePoint }) {
                   indicator("skills")?.bg,
                 ].join(" ")}
               ></div>
-              {/* <div className="indicator-line bg-gray-200 absolute"></div> */}
             </div>
             <label className="text-gray-700 text-xs  text-center  ">
               keahlian

@@ -3,19 +3,27 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { ReactComponent as EmptyState } from "assets/icons/empty-state.svg";
 export default function Home() {
+  const history = useHistory();
+
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
     setUsers(users);
   }, []);
-  const history = useHistory();
 
   const handleDelete = (id) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const newUsers = users.filter((user) => user.datadiri?.id !== id);
-    localStorage.setItem("users", JSON.stringify(newUsers));
-    setUsers(newUsers.filter((user) => user.datadiri?.id !== id));
+    const filterDeleteUser = users.filter((user) => user.datadiri?.id !== id);
+
+    localStorage.setItem("users", JSON.stringify(filterDeleteUser));
+    setUsers(filterDeleteUser.filter((user) => user.datadiri?.id !== id));
   };
+
+  const thClassName =
+    "py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md";
+
+  const tdClassname =
+    "py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center  text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md  ";
 
   return (
     <div style={{ width: "100%" }}>
@@ -25,7 +33,7 @@ export default function Home() {
         <div className="my-12">
           <div className="mb-3">
             <span className="text-md xl:text-2xl lg:text-2xl font-bold">
-              List data
+              List Data Users
             </span>
           </div>
           <button
@@ -41,31 +49,15 @@ export default function Home() {
           <table className="table-auto w-full">
             <thead className="bg-gray-50 border">
               <tr>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  ID
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  Nama
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  Alamat
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  TTL
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  Email
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  No. Hp
-                </th>
+                <th className={thClassName}>ID</th>
+                <th className={thClassName}>Nama</th>
+                <th className={thClassName}>Alamat</th>
+                <th className={thClassName}>TTL</th>
+                <th className={thClassName}>Email</th>
+                <th className={thClassName}>No. Hp</th>
 
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  Edit
-                </th>
-                <th className="py-4 xl:py-6 px-2 text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                  Hapus
-                </th>
+                <th className={thClassName}>Edit</th>
+                <th className={thClassName}>Hapus</th>
               </tr>
             </thead>
             <tbody>
@@ -83,25 +75,15 @@ export default function Home() {
               ) : null}
               {users.map((user, index) => (
                 <tr className="whitespace-nowrap border" key={index}>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center  text-gray-500 text-xs xs:text-xs md:text-base lg:text-base  xl:text-md  ">
-                    {user["datadiri"]?.id}
-                  </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
+                  <td className={tdClassname}>{user["datadiri"]?.id}</td>
+                  <td className={tdClassname}>
                     {user["datadiri"]?.nama_lengkap}
                   </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                    {user["datadiri"]?.address}
-                  </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                    {user["datadiri"]?.ttl}
-                  </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
-                    {user["datadiri"]?.email}a
-                  </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md  text-gray-500">
-                    {user["datadiri"]?.no_phone}
-                  </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md  ">
+                  <td className={tdClassname}>{user["datadiri"]?.address}</td>
+                  <td className={tdClassname}>{user["datadiri"]?.ttl}</td>
+                  <td className={tdClassname}>{user["datadiri"]?.email}a</td>
+                  <td className={tdClassname}>{user["datadiri"]?.no_phone}</td>
+                  <td className={tdClassname}>
                     <button
                       className="px-4 py-1  text-white bg-blue-400 rounded"
                       onClick={() => {
@@ -111,7 +93,7 @@ export default function Home() {
                       Edit
                     </button>
                   </td>
-                  <td className="py-4 xl:py-6 px-2 text-left xs:text-left xl:text-center text-xs xs:text-xs md:text-base lg:text-base  xl:text-md">
+                  <td className={tdClassname}>
                     <button
                       className="px-4 py-1  text-white bg-red-400 rounded"
                       onClick={() => handleDelete(user["datadiri"]?.id)}
