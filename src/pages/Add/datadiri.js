@@ -59,7 +59,7 @@ export default function Datadiri({
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
+                htmlFor=""
               >
                 Address
               </label>
@@ -67,11 +67,13 @@ export default function Datadiri({
                 name="address"
                 className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={onChange()}
-                value={data["address"]}
+                value={data["address"] || ""}
                 // error={}
               ></textarea>
               {error["address"] ? (
-                <p class="text-red-500 text-xs italic">{error["address"]}</p>
+                <p className="text-red-500 text-xs italic">
+                  {error["address"]}
+                </p>
               ) : null}
             </div>
           </div>

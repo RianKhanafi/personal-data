@@ -35,7 +35,7 @@ export default function Skills({
             <div className="w-5/12 pr-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
+                htmlFor=""
               >
                 {index === 0 ? "Tingkatan" : ""}
               </label>
@@ -50,7 +50,7 @@ export default function Skills({
                 <option value="expert">Expert</option>
               </select>
               {error[index]?.["tingkatan"] ? (
-                <p class="text-red-500 text-xs italic">
+                <p className="text-red-500 text-xs italic">
                   {error[index]?.["tingkatan"]}
                 </p>
               ) : null}

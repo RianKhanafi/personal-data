@@ -11,23 +11,19 @@ export default function Input({
 }) {
   return (
     <div>
-      <label
-        className="block text-gray-700 text-sm font-bold mb-2"
-        for="username"
-      >
+      <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="">
         {label}
       </label>
       <input
         name={name}
         className="text-sm xl:text-md border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="username"
         type={type}
         placeholder={placeholder}
-        value={value}
+        value={value || ""}
         type={type}
         onChange={onChange}
       />
-      {error ? <p class="text-red-500 text-xs italic">{error}</p> : null}
+      {error ? <p className="text-red-500 text-xs italic">{error}</p> : null}
     </div>
   );
 }

@@ -66,7 +66,7 @@ export default function Experiance({
                   error={error[index]?.["duration"]}
                 />
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <div className="flex items-end">
                   <div>
                     <Input
@@ -93,19 +93,19 @@ export default function Experiance({
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="mb-4">
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
-                    for=""
+                    htmlFor=""
                   >
                     Informasi Tambahan
                   </label>
                   <textarea
                     className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     name="information"
-                    value={item["information"]}
+                    value={item["information"] || ""}
                     onChange={onChange(index)}
                   ></textarea>
                 </div>

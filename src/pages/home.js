@@ -13,10 +13,14 @@ export default function Home() {
 
   const handleDelete = (id) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const filterDeleteUser = users.filter((user) => user.datadiri?.id !== id);
+    const filterDeleteUser = users.filter(
+      (user) => user.datadiri?.id !== Number(id)
+    );
 
     localStorage.setItem("users", JSON.stringify(filterDeleteUser));
-    setUsers(filterDeleteUser.filter((user) => user.datadiri?.id !== id));
+    setUsers(
+      filterDeleteUser.filter((user) => user.datadiri?.id !== Number(id))
+    );
   };
 
   const thClassName =
@@ -37,7 +41,7 @@ export default function Home() {
             </span>
           </div>
           <button
-            className="bg-blue-500  hover:bg-blue-700 text-white font-smibold xl:font-bold py-2 px-2 xl:py-2 xl:px-4 text-xs xl:text-lg rounded-sm xl:rounded border-none"
+            className="bg-blue-400  hover:bg-blue-500 text-white font-smibold xl:font-bold py-2 px-2 xl:py-2 xl:px-4 text-xs xl:text-lg rounded-sm xl:rounded border-none"
             onClick={() => {
               history.push("/new-data");
             }}
