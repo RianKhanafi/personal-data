@@ -7,6 +7,7 @@ export default function Input({
   onChange = () => {},
   value,
   name,
+  error,
 }) {
   return (
     <div>
@@ -26,6 +27,7 @@ export default function Input({
         type={type}
         onChange={onChange}
       />
+      {error ? <p class="text-red-500 text-xs italic">{error}</p> : null}
     </div>
   );
 }

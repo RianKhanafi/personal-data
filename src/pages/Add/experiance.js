@@ -8,6 +8,7 @@ export default function Experiance({
     onChange = () => {},
     addNewLine = () => {},
     onDeleteItems = () => {},
+    error = [],
   },
 }) {
   return (
@@ -44,6 +45,7 @@ export default function Experiance({
                   name="position"
                   value={item["position"]}
                   onChange={onChange(index)}
+                  error={error[index]?.["position"]}
                 />
               </div>
               <div className="mb-4">
@@ -52,6 +54,7 @@ export default function Experiance({
                   name="company_name"
                   onChange={onChange(index)}
                   value={item["company_name"]}
+                  error={error[index]?.["company_name"]}
                 />
               </div>
               <div className="mb-4">
@@ -60,6 +63,7 @@ export default function Experiance({
                   value={item["duration"]}
                   name="duration"
                   onChange={onChange(index)}
+                  error={error[index]?.["duration"]}
                 />
               </div>
               <div className="mb-4">

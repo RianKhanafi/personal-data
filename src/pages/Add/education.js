@@ -8,6 +8,7 @@ export default function Education({
     onChange = () => {},
     addNewLine = () => {},
     onDeleteItems = () => {},
+    error = [],
   },
 }) {
   return (
@@ -42,6 +43,7 @@ export default function Education({
                   name="universitas"
                   value={item["universitas"]}
                   onChange={onChange(index)}
+                  error={error[index]?.["universitas"]}
                 />
               </div>
               <div className="mb-4">
@@ -51,6 +53,7 @@ export default function Education({
                   value={item["graduate_date"]}
                   onChange={onChange(index)}
                   type="date"
+                  error={error[index]?.["graduate_date"]}
                 />
               </div>
               <div className="mb-4">
@@ -59,6 +62,7 @@ export default function Education({
                   name="major"
                   value={item["major"]}
                   onChange={onChange(index)}
+                  error={error[index]?.["major"]}
                 />
               </div>
               <div className="mb-4">

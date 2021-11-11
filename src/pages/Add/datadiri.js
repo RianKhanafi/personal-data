@@ -1,7 +1,9 @@
 import Input from "components/Input";
 import React from "react";
 
-export default function Datadiri({ props: { data, onChange = () => {} } }) {
+export default function Datadiri({
+  props: { data, onChange = () => {}, error },
+}) {
   return (
     <div>
       <div className="bg-gray-100 mt-8 xl:  p-4 md:p-9 lg:p-9 xl:p-9">
@@ -20,6 +22,7 @@ export default function Datadiri({ props: { data, onChange = () => {} } }) {
                 type="text"
                 name="nama_lengkap"
                 value={data["nama_lengkap"]}
+                error={error["nama_lengkap"]}
               />
             </div>
             <div className="mb-4">
@@ -29,6 +32,7 @@ export default function Datadiri({ props: { data, onChange = () => {} } }) {
                 name="no_phone"
                 type="number"
                 value={data["no_phone"]}
+                error={error["no_phone"]}
               />
             </div>
             <div className="mb-4">
@@ -37,6 +41,7 @@ export default function Datadiri({ props: { data, onChange = () => {} } }) {
                 onChange={onChange()}
                 name="email"
                 value={data["email"]}
+                error={error["email"]}
               />
             </div>
           </div>
@@ -48,6 +53,7 @@ export default function Datadiri({ props: { data, onChange = () => {} } }) {
                 onChange={onChange()}
                 name="ttl"
                 value={data["ttl"]}
+                error={error["ttl"]}
               />
             </div>
             <div className="mb-4">
@@ -62,7 +68,11 @@ export default function Datadiri({ props: { data, onChange = () => {} } }) {
                 className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 onChange={onChange()}
                 value={data["address"]}
+                // error={}
               ></textarea>
+              {error["address"] ? (
+                <p class="text-red-500 text-xs italic">{error["address"]}</p>
+              ) : null}
             </div>
           </div>
         </div>

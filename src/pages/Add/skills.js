@@ -8,6 +8,7 @@ export default function Skills({
     onChange = () => {},
     addNewLine = () => {},
     onDeleteItems = () => {},
+    error = [],
   },
 }) {
   return (
@@ -27,6 +28,7 @@ export default function Skills({
                 name="skills"
                 value={item["skills"]}
                 placeholder="Skill"
+                error={error[index]?.["skills"]}
                 onChange={onChange(index)}
               />
             </div>
@@ -47,6 +49,11 @@ export default function Skills({
                 <option value="middle">Middle</option>
                 <option value="expert">Expert</option>
               </select>
+              {error[index]?.["tingkatan"] ? (
+                <p class="text-red-500 text-xs italic">
+                  {error[index]?.["tingkatan"]}
+                </p>
+              ) : null}
             </div>
             <div className="w-2/12">
               <button

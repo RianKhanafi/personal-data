@@ -8,15 +8,39 @@ import Education from "./education";
 import Experiance from "./experiance";
 import Skills from "./skills";
 
+const initialData = {
+  datadiri: {
+    address: null,
+    email: null,
+    nama_lengkap: null,
+    no_phone: null,
+    ttl: null,
+  },
+  education: [
+    {
+      universitas: null,
+      graduate_date: null,
+      major: null,
+    },
+  ],
+
+  experiance: [
+    {
+      position: null,
+      company_name: null,
+      duration: null,
+    },
+  ],
+  skills: [{ skills: null, tingkatan: null }],
+};
 export default function NewData() {
   const { id } = useParams();
   const history = useHistory();
   const { state, userdata } = useContext(UserDataContext);
-  const [data, setData] = useState({
-    datadiri: {},
-    education: [{}],
-    experiance: [{}],
-    skills: [{}],
+  const [data, setData] = useState({ ...initialData });
+
+  const [error, setError] = useState({
+    ...initialData,
   });
 
   useEffect(() => {
@@ -53,7 +77,11 @@ export default function NewData() {
 
   const addNewLine = (e) => {
     const array = { ...data };
-    array[state?.activetab].push({});
+    array[state?.activetab].push(
+      state?.activetab === "datadiri"
+        ? initialData[state?.activetab]
+        : initialData[state?.activetab]?.[0]
+    );
     setData(array);
   };
 
@@ -65,6 +93,7 @@ export default function NewData() {
   const renderForm = () => {
     const props = {
       data: data[state?.activetab] || {},
+      error: error[state?.activetab] || {},
       onChange,
       addNewLine,
       onDeleteItems,
@@ -81,33 +110,75 @@ export default function NewData() {
     }
   };
 
+  const validate = () => {
+    let errorArr = {
+      [state?.activetab]: state?.activetab === "datadiri" ? {} : [],
+    };
+    switch (state?.activetab) {
+      case "datadiri":
+        Object.keys(data[state?.activetab]).forEach((key) => {
+          if (!data[state?.activetab][key]) {
+            errorArr[state?.activetab][key] = `Kolom ${key} wajib diisi!`;
+          } else {
+            errorArr = {};
+          }
+        });
+        break;
+      default:
+        data[state?.activetab].forEach((key, index) => {
+          let err = {};
+          Object.keys(key).forEach((field) => {
+            if (!key[field]) {
+              err[field] = `Kolom ${field} wajib diisi!`;
+            } else {
+              err = {};
+            }
+          });
+          if (Object.keys(err).length) {
+            errorArr[state?.activetab]?.push(err);
+          } else errorArr = {};
+        });
+    }
+    setError(errorArr);
+
+    return { next: Object.keys(errorArr).length === 0 };
+  };
+
   const nextStep = (e) => {
-    if (e) {
-      userdata?.setBulletData(e);
-    } else userdata?.setActiveTab(state?.activetab);
+    const validasi = validate();
+    if (validasi?.next) {
+      if (e) {
+        userdata?.setBulletData(e);
+      } else userdata?.setActiveTab(state?.activetab);
+    }
   };
 
   const save = () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const validasi = validate();
 
-    if (id) {
-      const newUsers = users.filter(
-        (user) => user?.datadiri?.id !== Number(id)
-      );
-      newUsers.push({
-        ...data,
-        datadiri: { ...data?.datadiri, id: users.length + 1 },
-      });
-      localStorage.setItem("users", JSON.stringify(newUsers));
-    } else {
-      users.push({
-        ...data,
-        datadiri: { ...data?.datadiri, id: users.length + 1 },
-      });
-      localStorage.setItem("users", JSON.stringify(users));
+    if (validasi?.next) {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (id) {
+        const newUsers = users.filter(
+          (user) => user?.datadiri?.id !== Number(id)
+        );
+        newUsers.push({
+          ...data,
+          datadiri: { ...data?.datadiri, id: users.length + 1 },
+        });
+        localStorage.setItem("users", JSON.stringify(newUsers));
+      } else {
+        users.push({
+          ...data,
+          datadiri: { ...data?.datadiri, id: users.length + 1 },
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+      userdata?.setBulletData("datadiri");
+      setData({ ...initialData });
+      history.push("/");
     }
-
-    history.push("/");
   };
 
   return (
@@ -135,7 +206,7 @@ export default function NewData() {
               state?.activetab === "skills" ? save() : nextStep();
             }}
           >
-            {state?.activetab === "skills" ? "Save" : "Next"}
+            {state?.activetab === "skills" ? (id ? "Edit" : "Save") : "Next"}
           </button>
         </div>
       </section>

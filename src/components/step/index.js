@@ -39,7 +39,7 @@ export default function Step({ active, onChangePoint }) {
                 ].join(" ")}
               ></div>
             </div>
-            <label className="text-gray-700 text-xs  text-center   text-center">
+            <label className="text-gray-700 text-xs xl:text-base  text-center   text-center">
               Data Personal
             </label>
           </div>
@@ -63,7 +63,7 @@ export default function Step({ active, onChangePoint }) {
                 ].join(" ")}
               ></div>
             </div>
-            <label className="text-gray-700 text-xs  text-center  ">
+            <label className="text-gray-700 text-xs xl:text-base  text-center  ">
               Riwayat Pendidikan
             </label>
           </div>
@@ -87,7 +87,7 @@ export default function Step({ active, onChangePoint }) {
                 ].join(" ")}
               ></div>
             </div>
-            <label className="text-gray-700 text-xs  text-center  ">
+            <label className="text-gray-700 text-xs xl:text-base  text-center  ">
               Pengalaman Kerja
             </label>
           </div>
@@ -105,7 +105,7 @@ export default function Step({ active, onChangePoint }) {
                 ].join(" ")}
               ></div>
             </div>
-            <label className="text-gray-700 text-xs  text-center  ">
+            <label className="text-gray-700 text-xs xl:text-base  text-center  ">
               keahlian
             </label>
           </div>
