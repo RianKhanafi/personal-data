@@ -45,7 +45,7 @@ export default function Home() {
             Tambah Data Baru +
           </button>
         </div>
-        <div className="xs:overflow-auto ">
+        <div className="overflow-x-auto ">
           <table className="table-auto w-full">
             <thead className="bg-gray-50 border">
               <tr>

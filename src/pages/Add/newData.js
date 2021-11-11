@@ -116,7 +116,7 @@ export default function NewData() {
 
       <section className="container mx-auto mt-28 xl:my-16 xl:mt-44 relative">
         <Step active={state?.activetab} onChangePoint={nextStep} />
-        {renderForm()}
+        <div className="mb-24 xl:mb-0 lg:mb-0">{renderForm()}</div>
 
         <div className="flex w-full py-6 justify-end fixed right-20 bottom-0">
           <button
