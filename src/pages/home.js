@@ -33,7 +33,7 @@ export default function Home() {
     <div style={{ width: "100%" }}>
       <Header />
 
-      <section className="container mx-auto mt-20 lg:mt-32 xl:mt-32 pl-4 pr-4 relative">
+      <section className="container mx-auto mt-20 lg:mt-32 xl:mt-32 relative">
         <div className="my-12">
           <div className="mb-3">
             <span className="text-md xl:text-2xl lg:text-2xl font-bold">

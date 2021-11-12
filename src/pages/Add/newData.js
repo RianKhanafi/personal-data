@@ -114,13 +114,15 @@ export default function NewData() {
     let errorArr = {
       [state?.activetab]: state?.activetab === "datadiri" ? {} : [],
     };
+
+    // console
     switch (state?.activetab) {
       case "datadiri":
         Object.keys(data[state?.activetab]).forEach((key) => {
           if (!data[state?.activetab][key]) {
             errorArr[state?.activetab][key] = `Kolom ${key} wajib diisi!`;
           } else {
-            errorArr = {};
+            errorArr[state?.activetab][key] = null;
           }
         });
         break;
@@ -131,17 +133,31 @@ export default function NewData() {
             if (!key[field]) {
               err[field] = `Kolom ${field} wajib diisi!`;
             } else {
-              err = {};
+              err[field] = null;
             }
           });
           if (Object.keys(err).length) {
             errorArr[state?.activetab]?.push(err);
-          } else errorArr = {};
+          } else errorArr[state?.activetab] = [];
         });
     }
     setError(errorArr);
 
-    return { next: Object.keys(errorArr).length === 0 };
+    if (state?.activetab === "datadiri") {
+      return {
+        next:
+          Object.values(errorArr[state?.activetab]).find(
+            (elm) => elm !== null
+          ) === undefined,
+      };
+    } else {
+      return {
+        next:
+          errorArr[state?.activetab].find((elm) => {
+            return Object.values(elm).find((elm) => elm !== null);
+          }) === undefined,
+      };
+    }
   };
 
   const nextStep = (e) => {
@@ -189,7 +205,7 @@ export default function NewData() {
         <Step active={state?.activetab} onChangePoint={nextStep} />
         <div className="mb-24 xl:mb-0 lg:mb-0">{renderForm()}</div>
 
-        <div className="flex w-full py-6 justify-end fixed right-20 bottom-0">
+        <div className="flex py-6 justify-end fixed right-20 bottom-0">
           <button
             className={[
               "shadow-lg bg-gray-300 hover:bg-gray-400 mr-4 text-white font-bold py-2 px-4 rounded mt-5 ",

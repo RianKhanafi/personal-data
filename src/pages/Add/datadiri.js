@@ -22,7 +22,7 @@ export default function Datadiri({
                 type="text"
                 name="nama_lengkap"
                 value={data["nama_lengkap"]}
-                error={error["nama_lengkap"]}
+                error={error?.nama_lengkap}
               />
             </div>
             <div className="mb-4">
@@ -32,7 +32,7 @@ export default function Datadiri({
                 name="no_phone"
                 type="number"
                 value={data["no_phone"]}
-                error={error["no_phone"]}
+                error={error?.no_phone}
               />
             </div>
             <div className="mb-4">
@@ -41,7 +41,7 @@ export default function Datadiri({
                 onChange={onChange()}
                 name="email"
                 value={data["email"]}
-                error={error["email"]}
+                error={error?.email}
               />
             </div>
           </div>
@@ -53,7 +53,7 @@ export default function Datadiri({
                 onChange={onChange()}
                 name="ttl"
                 value={data["ttl"]}
-                error={error["ttl"]}
+                error={error?.ttl}
               />
             </div>
             <div className="mb-4">

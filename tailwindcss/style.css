@@ -3,6 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* .container{
+  margin: 0 500px !important;
+} */
+
+
 .step {
     @apply flex justify-between;
   
