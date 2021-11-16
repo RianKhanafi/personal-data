@@ -16,11 +16,8 @@ export default function Home() {
     const filterDeleteUser = users.filter(
       (user) => user.datadiri?.id !== Number(id)
     );
-
     localStorage.setItem("users", JSON.stringify(filterDeleteUser));
-    setUsers(
-      filterDeleteUser.filter((user) => user.datadiri?.id !== Number(id))
-    );
+    setUsers(filterDeleteUser);
   };
 
   const thClassName =
