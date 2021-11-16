@@ -8,32 +8,33 @@ import Education from "./education";
 import Experiance from "./experiance";
 import Skills from "./skills";
 
-const initialData = {
-  datadiri: {
-    address: null,
-    email: null,
-    nama_lengkap: null,
-    no_phone: null,
-    ttl: null,
-  },
-  education: [
-    {
-      universitas: null,
-      graduate_date: null,
-      major: null,
-    },
-  ],
-
-  experiance: [
-    {
-      position: null,
-      company_name: null,
-      duration: null,
-    },
-  ],
-  skills: [{ skills: null, tingkatan: null }],
-};
 export default function NewData() {
+  const initialData = {
+    datadiri: {
+      address: null,
+      email: null,
+      nama_lengkap: null,
+      no_phone: null,
+      ttl: null,
+    },
+    education: [
+      {
+        universitas: null,
+        graduate_date: null,
+        major: null,
+      },
+    ],
+
+    experiance: [
+      {
+        position: null,
+        company_name: null,
+        duration: null,
+      },
+    ],
+    skills: [{ skills: null, tingkatan: null }],
+  };
+
   const { id } = useParams();
   const history = useHistory();
   const { state, userdata } = useContext(UserDataContext);
